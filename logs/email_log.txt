@@ -1,0 +1,13 @@
+--- 2026-02-21 21:44:29 ---
+Para: moduptecnologia@gmail.com
+Assunto: Convite MisterCheff
+Conteúdo:
+Olá modup,
+
+A loja Loja Centro indicou você para o MisterCheff!
+Clique aqui para conhecer: http://localhost:3000/public/index.php?ref=loja01
+
+Atenciosamente,
+Equipe MisterCheff
+---------------------------
+

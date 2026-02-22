@@ -1,0 +1,31 @@
+-- Active: 1765578694938@@100.117.144.65@3306@indique_e_ganhe
+
+CREATE TABLE IF NOT EXISTS lojas (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    ref_code VARCHAR(50) NOT NULL UNIQUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS indicados (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_loja INT UNSIGNED NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    status ENUM('convidado', 'virou_cliente') NOT NULL DEFAULT 'convidado',
+    data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unq_indicado_email_loja (id_loja, email),
+    FOREIGN KEY (id_loja) REFERENCES lojas(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS cliques (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_loja INT UNSIGNED NOT NULL,
+    ip VARCHAR(45) NOT NULL,
+    user_agent VARCHAR(255) NOT NULL,
+    data_hora DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_loja) REFERENCES lojas(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO lojas (nome, email, ref_code) 
+VALUES ('Loja Centro', 'contato@lojacentro.com', 'loja01');
